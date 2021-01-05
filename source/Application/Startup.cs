@@ -1,5 +1,10 @@
+using Data.Persistence;
+using Data.Persistence.Identity;
+using Data.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,17 +14,27 @@ namespace Application
     public class Startup
     {
         private readonly IConfiguration _configuration;
+        private string _connectionString;
 
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
+            _connectionString = string.Format("Server={0};Database={0};{2};{3};",
+                _configuration["SqlConnection:Server"],
+                _configuration["SqlConnection:Database"],
+                _configuration["SqlConnection:Security"],
+                _configuration["SqlConnection:Options"]);
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_connectionString));
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddScoped<LogRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
