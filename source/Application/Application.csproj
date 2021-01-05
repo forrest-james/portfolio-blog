@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Content Remove="wwwroot\css\main.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\resources\images\" />
@@ -22,6 +25,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TailwindCSS Include="wwwroot\css\main.css" />
   </ItemGroup>
 
 </Project>
