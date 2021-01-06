@@ -91,6 +91,8 @@ main {
         font-style: italic;
         font-weight: normal;
         line-height: 2.5rem; }
+      main .content article p {
+        margin-bottom: 0.5rem; }
       main .content article .article-preview {
         font-size: 1.5rem;
         line-height: 2.5rem; }
