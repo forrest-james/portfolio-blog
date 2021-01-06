@@ -68,6 +68,10 @@ main {
     main .content article {
       width: 90%;
       margin: 0 auto 2.5rem auto; }
+      main .content article a {
+        text-decoration: none; }
+        main .content article a:hover {
+          color: #ffb300; }
       main .content article h1 {
         font-size: 2.5rem;
         font-weight: bold;
@@ -77,8 +81,8 @@ main {
         font-style: italic;
         line-height: 2.5rem; }
       main .content article .article-preview {
-        font-size: 1.25rem;
-        line-height: 2rem; }
+        font-size: 1.5rem;
+        line-height: 2.5rem; }
 
 ::-webkit-scrollbar {
   width: 10px; }

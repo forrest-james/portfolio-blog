@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Log>
 @{ }
 
-@if(Model.Count() == 0)
+@if (Model.Count() == 0)
 {
     <article>
         <div class="article-preview">No logs at this time.</div>
     </article>
 }
 
-@foreach (Log log in Model.OrderByDescending(l => l.CreatedDate).Take(10))
+@foreach (Log log in Model.OrderByDescending(l => l.CreatedDate))
 {
     <article>
         <h1><a href="#">@log.Title</a></h1>

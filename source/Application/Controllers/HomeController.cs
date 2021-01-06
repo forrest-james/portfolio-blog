@@ -1,4 +1,6 @@
-﻿using Data.Persistence.Repositories;
+﻿using Application.Common.Services;
+using Data.Common.Enums;
+using Data.Persistence.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,11 +16,21 @@ namespace Application.Controllers
 
         public HomeController(LogRepository logRepository) => _logRepository = logRepository;
 
+        [HttpGet]
+        [Route("")]
         public IActionResult Index()
         {
-            ViewBag.Title = "My Thoughts";
+            ViewBag.PageTitle = "My Thoughts";
             var model = _logRepository.GetAll();
             return View(model);
+        }
+
+        [HttpGet]
+        [Route("/{logType}")]
+        public IActionResult List(LogType logType)
+        {
+            ViewBag.PageTitle = logType.ToName();
+            return View(_logRepository.GetByType(logType));
         }
     }
 }
