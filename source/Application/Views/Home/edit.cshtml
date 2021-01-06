@@ -27,5 +27,8 @@
         <textarea asp-for="Body"></textarea>
         <span asp-validation-for="Body"></span>
     </div>
-    <input type="submit" value="Post" />
+    <div class="form-buttons">
+        <input type="submit" value="Post" />
+        <a href="/delete/@Model.Id">Delete</a>
+    </div>    
 </form>

@@ -60,6 +60,24 @@ namespace Application.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administrator")]
+        [Route("/delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            _logRepository.Remove(id);
+            if(await _logRepository.SaveChangesAsync())
+            {
+                // TODO: Add Success Message
+                return RedirectToAction("index");
+            }
+            else
+            {
+                // TODO: Add Failure Message
+                return RedirectToAction("edit", _logRepository.GetById(id));
+            }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
         [Route("/edit/{encodedTitle}")]
         public IActionResult Edit(string encodedTitle)
         {
