@@ -2,7 +2,11 @@
 @{ }
 
 <article>
-    <h1><a href="#">@Model.Title</a></h1>
+    <h1><a href="/edit/@Model.EncodedTitle">@Model.Title</a></h1>
     <h2>@Model.CreatedDate.Encode()</h2>
     <div class="article-preview"> @MarkdownService.ParseHtml(Model.Body)</div>
+    @if(Model.ModifiedDate != DateTime.MinValue)
+    {
+        <h4>Edited @Model.ModifiedDate.Encode()</h4>
+    }
 </article>

@@ -56,6 +56,34 @@ namespace Application.Controllers
         }
 
         [HttpGet]
+        [Route("/edit/{encodedTitle}")]
+        public IActionResult Edit(string encodedTitle)
+        {
+            Log log = _logRepository.GetByTitle(encodedTitle);
+            ViewBag.PageTitle = "Edit Post";
+            return View(log);
+        }
+
+        [HttpPost]
+        [Route("/edit")]
+        [Route("/edit/{encodedTitle}")]
+        public async Task<IActionResult> Edit(Log log)
+        {
+            log.ModifiedBy = _currentUserService.UserId;
+            _logRepository.Upsert(log);
+            if(await _logRepository.SaveChangesAsync())
+            {
+                // TODO: Add Success Message
+                return RedirectToAction("index");
+            }
+            else
+            {
+                // TODO: Add Failure Message
+                return View(log);
+            }
+        }
+
+        [HttpGet]
         [Route("")]
         public IActionResult Index()
         {

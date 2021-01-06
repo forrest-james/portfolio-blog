@@ -17,8 +17,8 @@ namespace Data.Models
         public DateTime CreatedDate { get; set; }
 #nullable enable
         public string? ModifiedBy { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public ICollection<Tag> Tags { get; set; }
 #nullable disable
+        public DateTime ModifiedDate { get; set; }
+        public ICollection<Tag> Tags { get; set; }
     }
 }
