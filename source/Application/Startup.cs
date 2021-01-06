@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Application
 {
@@ -37,6 +38,13 @@ namespace Application
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/login";
+            });
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(1800);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddScoped<LogRepository>();
