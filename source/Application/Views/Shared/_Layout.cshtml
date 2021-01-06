@@ -26,11 +26,11 @@
                 <div class="nav-section" id="authorization">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        if (User.IsInRole("Admin"))
+                        if (User.IsInRole("Administrator"))
                         {
                             <a asp-controller="home" asp-action="create" class="nav-link">Create Post</a>
                         }
-                        <a asp-controller="home" asp-action="logout">Log Out</a>
+                        <a asp-controller="home" asp-action="logout" class="nav-link">Log Out</a>
                     }
                     else
                     {
