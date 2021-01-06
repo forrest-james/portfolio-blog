@@ -19,7 +19,7 @@ namespace Application
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
-            _connectionString = string.Format("Server={0};Database={0};{2};{3};",
+            _connectionString = string.Format("Server={0};Database={1};{2};{3};",
                 _configuration["SqlConnection:Server"],
                 _configuration["SqlConnection:Database"],
                 _configuration["SqlConnection:Security"],
