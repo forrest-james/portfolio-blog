@@ -39,7 +39,7 @@ namespace Data.Persistence.Repositories
                     Title = log.Title,
                     Body = log.Body,
                     Type = log.Type,
-                    EncodedTitle = log.Title.Encode(),
+                    EncodedTitle = ValidateTitle(log.Title.Encode()),
                     Tags = log.Tags,
                     CreatedBy = log.CreatedBy,
                     CreatedDate = DateTime.UtcNow
@@ -48,10 +48,19 @@ namespace Data.Persistence.Repositories
             }
             else
             {
-                log.EncodedTitle = log.Title.Encode();
+                log.EncodedTitle = ValidateTitle(log.Title.Encode());
                 log.ModifiedDate = DateTime.UtcNow;
                 _dbContext.Logs.Update(log);
             }
+        }
+
+        private string ValidateTitle(string encodedTitle)
+        {
+            int matches = _dbContext.Logs.Where(log => log.EncodedTitle == encodedTitle).Count();
+            if (matches > 0)
+                return encodedTitle += "-" + matches++;
+            else
+                return encodedTitle;
         }
     }
 }
