@@ -4,11 +4,34 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title</title>
+    <meta name="author" content="Forrest, James" />
     <link rel="stylesheet" href="/css/main.min.css" />
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <div class="page">
+        <header>
+            @RenderSection("filter", false)
+            <h1>@ViewBag.Title</h1>
+        </header>
+        <main>
+            <nav>
+                <div class="nav-section" id="log-types">
+                @foreach(LogType logType in Enum.GetValues(typeof(LogType)))
+                {
+                    <a href="#">@logType.ToString()</a>
+                }
+                </div>
+                <div class="nav-section" id="authorization">
+                    <a href="#">Log In</a>
+                    <a href="#">Create Post</a>
+                    <a href="#">Log Out</a>
+                </div>
+            </nav>
+            <section class="content">
+                @RenderBody()
+            </section>        
+        </main>
+        <footer></footer>
     </div>
 </body>
 </html>

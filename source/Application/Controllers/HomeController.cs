@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Data.Persistence.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,15 @@ namespace Application.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly LogRepository _logRepository;
+
+        public HomeController(LogRepository logRepository) => _logRepository = logRepository;
+
         public IActionResult Index()
         {
-            return View();
+            ViewBag.Title = "My Thoughts";
+            var model = _logRepository.GetAll();
+            return View(model);
         }
     }
 }
