@@ -4,6 +4,7 @@ using Data.Common.Enums;
 using Data.Models;
 using Data.Persistence.Identity;
 using Data.Persistence.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,6 +31,7 @@ namespace Application.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         [Route("/create")]
         public IActionResult Create()
         {
@@ -38,6 +40,7 @@ namespace Application.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [Route("/create")]
         public async Task<IActionResult> Create(Log newLog)
         {
@@ -56,6 +59,7 @@ namespace Application.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         [Route("/edit/{encodedTitle}")]
         public IActionResult Edit(string encodedTitle)
         {
@@ -65,6 +69,7 @@ namespace Application.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [Route("/edit")]
         [Route("/edit/{encodedTitle}")]
         public async Task<IActionResult> Edit(Log log)

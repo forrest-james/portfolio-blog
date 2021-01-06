@@ -34,6 +34,10 @@ namespace Application
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_connectionString));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/login";
+            });
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddScoped<LogRepository>();
             services.AddScoped<CurrentUserService>();
