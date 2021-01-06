@@ -26,7 +26,7 @@
                     {
                         if (User.IsInRole("Admin"))
                         {
-                            <a href="#">Create Post</a>
+                            <a asp-controller="home" asp-action="create">Create Post</a>
                         }
                         <a asp-controller="home" asp-action="logout">Log Out</a>
                     }

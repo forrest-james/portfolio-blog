@@ -1,6 +1,7 @@
 ﻿using Application.Common.Services;
 using Application.ViewModels;
 using Data.Common.Enums;
+using Data.Models;
 using Data.Persistence.Identity;
 using Data.Persistence.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -17,12 +18,41 @@ namespace Application.Controllers
     {
         private readonly LogRepository _logRepository;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly CurrentUserService _currentUserService;
 
         public HomeController(LogRepository logRepository,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            CurrentUserService currentUserService)
         {
             _logRepository = logRepository;
             _signInManager = signInManager;
+            _currentUserService = currentUserService;
+        }
+
+        [HttpGet]
+        [Route("/create")]
+        public IActionResult Create()
+        {
+            ViewBag.PageTitle = "Create Post";
+            return View(new Log());
+        }
+
+        [HttpPost]
+        [Route("/create")]
+        public async Task<IActionResult> Create(Log newLog)
+        {
+            newLog.CreatedBy = _currentUserService.UserId;
+            _logRepository.Upsert(newLog);
+            if(await _logRepository.SaveChangesAsync())
+            {
+                // TODO: Add Success Message
+                return RedirectToAction("index");
+            }
+            else
+            {
+                // TODO: Add Failure Message
+                return View(newLog);
+            }
         }
 
         [HttpGet]
@@ -66,6 +96,15 @@ namespace Application.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("index");
+        }
+
+        [HttpGet]
+        [Route("/{encodedTitle}")]
+        public IActionResult Post(string encodedTitle)
+        {
+            Log log = _logRepository.GetByTitle(encodedTitle);
+            ViewBag.PageTitle = log.Type.ToName();
+            return View(log);
         }
     }
 }

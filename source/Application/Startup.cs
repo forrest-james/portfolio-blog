@@ -1,3 +1,4 @@
+using Application.Common.Services;
 using Data.Persistence;
 using Data.Persistence.Identity;
 using Data.Persistence.Repositories;
@@ -35,6 +36,7 @@ namespace Application
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddScoped<LogRepository>();
+            services.AddScoped<CurrentUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

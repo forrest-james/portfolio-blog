@@ -61,15 +61,19 @@ main {
       margin-top: 5rem; }
   main .content {
     width: 75%;
-    height: 100%;
     font-family: 'Roboto Condensed', sans-serif;
     color: #3d99f5;
-    overflow-y: auto; }
+    overflow-y: auto;
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem; }
     main .content article {
       width: 90%;
       margin: 0 auto 2.5rem auto; }
       main .content article a {
-        text-decoration: none; }
+        text-decoration: none;
+        color: #3d99f5; }
+        main .content article a:visited {
+          color: #3d99f5; }
         main .content article a:hover {
           color: #ffb300; }
       main .content article h1 {
@@ -83,16 +87,19 @@ main {
       main .content article .article-preview {
         font-size: 1.5rem;
         line-height: 2.5rem; }
+        main .content article .article-preview li {
+          padding-left: 1.25rem;
+          list-style-position: inside; }
     main .content #loginForm {
-      width: 50%;
+      width: 80%;
       margin: 5rem auto;
-      padding: 2rem;
+      padding: 5rem;
       border: 2px solid #838996;
       border-radius: 5px; }
       main .content #loginForm .form-group {
         display: flex;
         flex-direction: column;
-        margin-bottom: 1.5rem; }
+        margin-bottom: 2.5rem; }
         main .content #loginForm .form-group label {
           font-size: 2rem;
           padding-left: 1rem;
@@ -122,6 +129,55 @@ main {
         text-decoration: none;
         cursor: pointer; }
         main .content #loginForm input[type=submit]:hover {
+          background-color: #ffb300; }
+    main .content #createLog {
+      width: 80%;
+      margin: 0 auto; }
+      main .content #createLog .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2.5rem; }
+        main .content #createLog .form-group label {
+          font-size: 2rem;
+          padding-left: 1rem;
+          margin-bottom: 0.5rem; }
+        main .content #createLog .form-group input, main .content #createLog .form-group select {
+          font-size: 1.5rem;
+          line-height: 2rem;
+          padding: 0.25rem 1rem;
+          border: 5px solid transparent;
+          border-radius: 1.5rem; }
+          main .content #createLog .form-group input:focus, main .content #createLog .form-group select:focus {
+            outline: none;
+            border: 5px solid #3d99f5; }
+        main .content #createLog .form-group textarea {
+          height: 26rem;
+          font-family: 'Roboto Condensed', sans-serif;
+          font-size: 1.5rem;
+          line-height: 2rem;
+          padding: 1rem;
+          border: 5px solid transparent;
+          border-radius: 1.5rem;
+          resize: none; }
+          main .content #createLog .form-group textarea:focus {
+            outline: none;
+            border: 5px solid #3d99f5; }
+      main .content #createLog input[type=submit] {
+        display: block;
+        width: 50%;
+        height: 2.5rem;
+        margin: 0 auto;
+        font-size: 1.5rem;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: bold;
+        line-height: 2.5rem;
+        background-color: #838996;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 1.25rem;
+        text-decoration: none;
+        cursor: pointer; }
+        main .content #createLog input[type=submit]:hover {
           background-color: #ffb300; }
 
 ::-webkit-scrollbar {

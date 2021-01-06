@@ -1,0 +1,8 @@
+﻿@model Log
+@{ }
+
+<article>
+    <h1><a href="#">@Model.Title</a></h1>
+    <h2>@Model.CreatedDate.Encode()</h2>
+    <div class="article-preview"> @MarkdownService.ParseHtml(Model.Body)</div>
+</article>

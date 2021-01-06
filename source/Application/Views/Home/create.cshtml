@@ -1,0 +1,26 @@
+﻿@model Log
+@{ }
+
+<form id="createLog" asp-controller="home" asp-action="create" method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+        <span asp-validation-for="Title"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Type"></label>
+        <select asp-for="Type">
+            @foreach(LogType logType in Enum.GetValues(typeof(LogType)))
+            {
+                <option>@logType</option>
+            }
+        </select>
+        <span asp-validation-for="Type"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Body"></label>
+        <textarea asp-for="Body"></textarea>
+        <span asp-validation-for="Body"></span>
+    </div>
+    <input type="submit" value="Post" />
+</form>
