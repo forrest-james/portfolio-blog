@@ -14,14 +14,7 @@
         <h1><a href="/article/@log.EncodedTitle" >@log.Title</a></h1>
         <h2>@log.CreatedDate.Encode()</h2>
         <div class="article-preview">
-            @if (log.Body.Length >= 1000)
-            {
-                @MarkdownService.ParseHtml(log.Body.Substring(0, 1000));
-            }
-            else
-            {
-                @MarkdownService.ParseHtml(log.Body);
-            }
+            @MarkdownService.ParseHtml(log.Body.Truncate(1000))
         </div>
     </article>
 }
