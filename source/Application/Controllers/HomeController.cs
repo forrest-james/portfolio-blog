@@ -127,7 +127,7 @@ namespace Application.Controllers
         }
 
         [HttpGet]
-        [Route("/{encodedTitle}")]
+        [Route("/article/{encodedTitle}")]
         public IActionResult Post(string encodedTitle)
         {
             Log log = _logRepository.GetByTitle(encodedTitle);

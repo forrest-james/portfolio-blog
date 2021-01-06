@@ -6,6 +6,7 @@
     <title>@ViewBag.PageTitle</title>
     <meta name="author" content="Forrest, James" />
     <link rel="stylesheet" href="/css/main.min.css" />
+    <script type="text/javascript" src="/js/scripts.js"></script>
 </head>
 <body>
     <div class="page">
@@ -16,9 +17,10 @@
         <main>
             <nav>
                 <div class="nav-section" id="log-types">
+                    <a asp-controller="home" asp-action="index" class="nav-link">Home</a>
                 @foreach(LogType logType in Enum.GetValues(typeof(LogType)))
                 {
-                    <a href="/@logType.ToString().ToLower()">@logType.ToString()</a>
+                    <a href="/@logType.ToString().ToLower()" class="nav-link">@logType.ToString()</a>
                 }
                 </div>
                 <div class="nav-section" id="authorization">
@@ -26,13 +28,13 @@
                     {
                         if (User.IsInRole("Admin"))
                         {
-                            <a asp-controller="home" asp-action="create">Create Post</a>
+                            <a asp-controller="home" asp-action="create" class="nav-link">Create Post</a>
                         }
                         <a asp-controller="home" asp-action="logout">Log Out</a>
                     }
                     else
                     {
-                        <a asp-controller="home" asp-action="login">Log In</a>
+                        <a asp-controller="home" asp-action="login" class="nav-link active-link">Log In</a>
                     }
                 </div>
             </nav>
@@ -41,6 +43,6 @@
             </section>        
         </main>
         <footer></footer>
-    </div>
+    </div>    
 </body>
 </html>

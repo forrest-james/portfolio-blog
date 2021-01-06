@@ -40,7 +40,7 @@ main {
   flex-direction: row; }
   main nav {
     width: 25%; }
-    main nav a {
+    main nav .nav-link {
       display: block;
       width: clamp(14ch, 80%, 24ch);
       height: clamp(1rem, 4vh, 3.5rem);
@@ -55,7 +55,9 @@ main {
       text-align: center;
       background-color: #838996;
       border-radius: 1.875rem; }
-      main nav a:hover {
+      main nav .nav-link.active-link {
+        background-color: #ffb300; }
+      main nav .nav-link:hover {
         background-color: #ffb300; }
     main nav #authorization {
       margin-top: 5rem; }
@@ -190,9 +192,12 @@ main {
 
 ::-webkit-scrollbar-track {
   background-color: #838996;
-  border-color: #000000;
+  border-color: transparent;
   border-width: 0px 4px 0px 4px;
-  border-style: solid; }
+  border-style: solid;
+  background-clip: padding-box;
+  margin-top: 15px;
+  margin-bottom: 15px; }
 
 ::-webkit-scrollbar-thumb {
   background-color: #3d99f5;
